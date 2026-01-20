@@ -1,0 +1,41 @@
+Build a comprehensive Event Access Management Web Application (SaaS) designed for event organizers. The app must be "Offline-First" (PWA) and strictly strictly strictly in ARABIC Language (Right-to-Left UI).
+
+### 1. Language & Design System (Arabic & Apple-Style)
+- **Language:** The entire UI (Buttons, Labels, Messages, Alerts) must be in Arabic.
+- **Direction:** Force `dir="rtl"` on the HTML document.
+- **Typography:** Use a modern Arabic font (e.g., 'Cairo' or 'Tajawal' from Google Fonts) for a professional look.
+- **Theme:** "Glassmorphism" design. Use a deep Purple palette (#5B21B6 to #7C3AED). Components should look like frosted glass (blur background, semi-transparent white, thin borders).
+- **UX:** Smooth animations, rounded corners (xl), and Apple-like interactions.
+
+### 2. User Roles (Hierarchical)
+No public registration. Accounts are created by higher tiers.
+1.  **Super Admin (مالك النظام):** Full control. Manage Admins. View global stats.
+2.  **Admin (مدير النظام):** Manage "Event Managers" (Clients) and set their event creation quotas.
+3.  **Event Manager (مدير المناسبة):** - Create Events.
+    - Upload Guest Lists (Excel parsing).
+    - Manage "Organizers" (Staff) accounts.
+    - Assign specific Organizers to specific events.
+    - Download QR Codes (bulk).
+    - View Analytics & Reports.
+4.  **Organizer (المنظم - Door Staff):** - Mobile-optimized view (PWA).
+    - **Offline Capability:** Downloads guest data to local storage upon login. Works without internet. Syncs when online.
+    - Scan QR / Search by Name or Phone.
+    - View Guest status (VIP, Companions, Notes).
+
+### 3. Key Features & Logic
+- **Excel Processing:** Parse uploaded Excel files (Columns: الاسم, الجوال, الفئة, عدد المرافقين, ملاحظات). Auto-generate a Unique ID & QR.
+- **QR Generation:** Feature to generate and download QR images for guests.
+- **Check-in Logic:**
+    - Scan -> Check Local DB.
+    - If New -> Mark "حضور" (Present) + Timestamp -> Show Green Success Screen.
+    - If Duplicate -> Show Red Alert "تم الدخول مسبقاً" (Already entered) + Time + Organizer Name.
+    - If Invalid -> Show Yellow Warning.
+- **Search:** Manual search bar for Name/Phone to handle guests without phones.
+- **Audit Log:** Record every single action (Check-in, Manual Override) with the organizer's name and time.
+
+### 4. Tech Stack
+- Frontend: React, Tailwind CSS, Lucide-React (Icons), Framer Motion.
+- Backend: Node.js (Express) with PostgreSQL.
+- State/Cache: TanStack Query (essential for offline sync).
+
+Please start by setting up the Database Schema and the Arabic RTL Layout.
