@@ -4,6 +4,8 @@ import { serveStatic } from "./static";
 import { createServer } from "http";
 
 const app = express();
+app.set("trust proxy", 1); // ✅ هذا السطر الجديد المهم جداً لحل مشكلة تسجيل الدخول
+
 const httpServer = createServer(app);
 
 declare module "http" {
